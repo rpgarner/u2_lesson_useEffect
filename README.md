@@ -1,70 +1,194 @@
-# Getting Started with Create React App
+# Introduction To `useEffect`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+- Fork and Clone
+- cd into `intro-to-useffect`
+- npm install
+- npm start
 
-In the project directory, you can run:
+## What is `useEffect`
 
-### `yarn start`
+The `useEffect` hook was introduced with the hooks api and replaces the following lifecycle methods, `componentDidMount`, `componentDidUpdate` and `componentWillUnmount`. The new term for this is `effect`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The syntax is quite different from the original lifecycle methods. Ex:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```js
+useEffect(() => {
+  doSomething() // Function executing on mount
 
-### `yarn test`
+  return () => {
+    // Cleanup function
+    cleanUpSomething()
+  }
+}, [observable]) // Something we want to observe
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The `doSomething` function runs every time a re-render is triggered, either by a state update or by the value of the observable changing.
 
-### `yarn build`
+The `cleanSomethingUp` function runs when the component unmounts from the virtual dom , ie: cleanup, primarily used to clean up timers or websocket subscriptions (realtime links to a data source).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The `observable` is something we want to keep track of, typically some sort of state or prop. Whenever the value changes it triggers the `useEffect` hook and re renders the virtual dom tree.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Mounting A Component
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In `components/Counter.js` let's import `useEffect`.
 
-### `yarn eject`
+```jsx
+import React, { useState, useEffect } from 'react'
+import Surprise from './Surprise'
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const Counter = () => {
+  const [count, updateCount] = useState(0)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  const incrementCount = () => {
+    updateCount(count + 1)
+  }
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  const decrementCount = () => {
+    if (count > 0) updateCount(count - 1)
+  }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  return (
+    <div>
+      <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
+          DO MORE
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
+          DO LESS
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={() => updateCount(0)}>
+          RESET
+        </button>
+      </div>
+      <section>{count === 5 ? <Surprise /> : null}</section>
+    </div>
+  )
+}
 
-## Learn More
+export default Counter
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Let's set up our effect:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```jsx
+import React, { useState, useEffect } from 'react'
+import Surprise from './Surprise'
 
-### Code Splitting
+const Counter = () => {
+  const [count, updateCount] = useState(0)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  useEffect(() => {
+    console.log('Mounted')
+  }, [])
 
-### Analyzing the Bundle Size
+  const incrementCount = () => {
+    updateCount(count + 1)
+  }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  const decrementCount = () => {
+    if (count > 0) updateCount(count - 1)
+  }
 
-### Making a Progressive Web App
+  return (
+    <div>
+      <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
+          DO MORE
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
+          DO LESS
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={() => updateCount(0)}>
+          RESET
+        </button>
+      </div>
+      <section>{count === 5 ? <Surprise /> : null}</section>
+    </div>
+  )
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+export default Counter
+```
 
-### Advanced Configuration
+Open your browser console and refresh the page, you should see `Mounted` printed to the console. This is the equivalent of `componentDidMount`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Working With Observables/Dependencies
 
-### Deployment
+With `useEffect`, the second argument it recieves is an array of `observables` or `dependencies` to watch. React keeps track of any state, props or functions that are provided and re-renders the virtual dom if a there was a change to the state or props and if a function was invoked.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Add `count` to the array:
 
-### `yarn build` fails to minify
+```jsx
+import React, { useState, useEffect } from 'react'
+import Surprise from './Surprise'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const Counter = () => {
+  const [count, updateCount] = useState(0)
+
+  useEffect(() => {
+    console.log('Mounted')
+  }, [count])
+
+  const incrementCount = () => {
+    updateCount(count + 1)
+  }
+
+  const decrementCount = () => {
+    if (count > 0) updateCount(count - 1)
+  }
+
+  return (
+    <div>
+      <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
+          DO MORE
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
+          DO LESS
+        </button>
+      </div>
+      <div>
+        <button style={{ fontSize: '4rem' }} onClick={() => updateCount(0)}>
+          RESET
+        </button>
+      </div>
+      <section>{count === 5 ? <Surprise /> : null}</section>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+Refresh your browsers and click the button `2` times, now everytime the `count` state updates, a re-render occurs.
+This is exactly how `componentDidUpdate` works.
+
+# STOP HERE
+
+## Cleanup's
+
+Reset your counters back to `0` using the reset button.
+Click the button `5` times. You should see a new component being rendered on the page and a new message printed to the console.
+
+Now decrement the count below 5.
+
+You should see `Unmounted => Clean up any side effects` printed to the console.
+
+The `return ()=>{}` runs a function to `clean up` side effects of our component, really useful for clearing timers or terminating realtime connections.
+
+An example would be, figure a chat application, when a user log's on, the connection get's established to a server. The server opens a live connection to the specific client, think text messages. Everytime a message is recieved or sent, it is all happening in realtime. Ideally we would prefer if when a user signs out or closes their browser the connection get's terminated. That's where the `clean up` portion of `useEffect` comes in.
