@@ -13,24 +13,27 @@ const Counter = () => {
   }
 
   return (
-    <div>
-      <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+    <div style={{height: '100vh'}}>
+      {count === 5 ? <Surprise /> : 
       <div>
-        <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
-          DO MORE
-        </button>
+        <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+        <div>
+          <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
+            DO MORE
+          </button>
+        </div>
+        <div>
+          <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
+            DO LESS
+          </button>
+        </div>
       </div>
-      <div>
-        <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
-          DO LESS
-        </button>
-      </div>
+      }
       <div>
         <button style={{ fontSize: '4rem' }} onClick={() => updateCount(0)}>
           RESET
         </button>
       </div>
-      <section>{count === 5 ? <Surprise /> : null}</section>
     </div>
   )
 }
