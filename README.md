@@ -11,6 +11,31 @@ In this lesson, we'll learn how to use the hook useEffect and how to apply it to
 - `npm i` to install our dependencies
 - `npm start` to spin up our app
 
+## Review of the React Component Lifecycle
+
+Back in Unit 2, we learned about the React Component Lifecycle. We learned how React components follow a very basic lifecycle starting with when they get `mounted` to the DOM or browser to when the component `renders` onto the screen. Components follow a strict set of rules or order of operations for how the mounting is done.
+
+Lifecycle methods are special functions that give our components a specific set of instructions on what to do at a given time. They are built into the React library.
+
+The lifecycle falls into three main pieces: When the component is being created (which is called **mounting**), when the component is being **updated**, and when the component is being removed from the DOM (which is called **unmounting**).
+
+React components' lifecycle events fall into three broad categories:
+
+- **Initializing / Mounting** e.g. What happens when the component is created and inserted into the DOM? Was an initial state set? Methods:
+
+  - `constructor()`
+  - `componentDidMount()`
+  - `render()`
+
+- **Updating** e.g. Did an event happen that changed the state? What happens when a component is being re-rendered? Methods:
+
+  - `render()`
+
+- **Unmounting** e.g. What happens when the component is destroyed? Methods:
+  - `componentWillUnmount()`
+
+Now, let's keep these in mind as we delve into the world of **useEffect**. It should help us understand what's going on under the hood as we see it in action.
+
 ## What is useEffect?
 
 ![Dunno](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FbkKvvzE9PEcTK%2Fgiphy.gif&f=1&nofb=1)
