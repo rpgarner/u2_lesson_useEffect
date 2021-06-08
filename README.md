@@ -100,7 +100,7 @@ const Counter = () => {
           RESET
         </button>
       </div>
-      <section>{count === 5 ? <Surprise /> : null}</section>
+      <section>{count === 10 ? <Surprise /> : null}</section>
     </div>
   )
 }
@@ -149,7 +149,7 @@ const Counter = () => {
           RESET
         </button>
       </div>
-      <section>{count === 5 ? <Surprise /> : null}</section>
+      <section>{count === 10 ? <Surprise /> : null}</section>
     </div>
   )
 }
@@ -204,7 +204,7 @@ const Counter = () => {
           RESET
         </button>
       </div>
-      <section>{count === 5 ? <Surprise /> : null}</section>
+      <section>{count === 10 ? <Surprise /> : null}</section>
     </div>
   )
 }
@@ -223,7 +223,7 @@ This is exactly how `componentDidUpdate` works.
 ## Cleanups
 
 Reset your counters back to `0` using the reset button.
-Click the button `5` times. You should see a new component being rendered on the page and a new message printed to the console.
+Click the button `10` times. You should see a new component being rendered on the page and a new message printed to the console.
 
 Now decrement the count below 5.
 
