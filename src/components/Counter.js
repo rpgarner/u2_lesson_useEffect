@@ -14,7 +14,7 @@ const Counter = () => {
 
   return (
     <div style={{height: '100vh'}}>
-      {count === 5 ? <Surprise /> : 
+      {count === 10 ? <Surprise /> : 
       <div>
         <h3 style={{ fontSize: '4rem' }}>{count}</h3>
         <div>
