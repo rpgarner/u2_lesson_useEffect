@@ -234,7 +234,7 @@ This is exactly how `componentDidUpdate` works.
 Reset your counters back to `0` using the reset button.
 Click the button `10` times. You should see a new component being rendered on the page and a new message printed to the console.
 
-Now decrement the count below 5.
+Now click the **Reset** button.
 
 You should see `Unmounted => Clean up any side effects` printed to the console.
 
