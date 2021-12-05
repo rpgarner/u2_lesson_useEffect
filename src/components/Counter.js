@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Surprise from './Surprise'
+import '../styles/App.css'
 
 const Counter = () => {
   const [count, updateCount] = useState(0)
@@ -13,26 +14,20 @@ const Counter = () => {
   }
 
   return (
-    <div style={{height: '100vh'}}>
-      {count === 20 ? <Surprise /> : 
-      <div>
-        <h3 style={{ fontSize: '4rem' }}>{count}</h3>
+    <div className="counter">
+      {count === 20 ? (
+        <Surprise />
+      ) : (
         <div>
-          <button style={{ fontSize: '3rem' }} onClick={incrementCount}>
-            +
-          </button>
+          <h3>{count}</h3>
+          <div className="button-container">
+            <button onClick={incrementCount}>+</button>
+            <button onClick={decrementCount}>-</button>
+          </div>
         </div>
-        <div>
-          <button style={{ fontSize: '3rem' }} onClick={decrementCount}>
-            -
-          </button>
-        </div>
-      </div>
-      }
+      )}
       <div>
-        <button style={{ fontSize: '3rem' }} onClick={() => updateCount(0)}>
-          RESET
-        </button>
+        <button onClick={() => updateCount(0)}>RESET</button>
       </div>
     </div>
   )
