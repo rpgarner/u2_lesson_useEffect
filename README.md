@@ -52,8 +52,8 @@ useEffect(() => {
   doSomething() // Function executing on mount
 
   return () => {
-    // Cleanup function
-    cleanUpSomething()
+    
+    cleanUpSomething() // Cleanup function
   }
 }, [observable]) // Something we want to observe
 ```
@@ -68,7 +68,7 @@ The "observable" is something we want to keep track of, typically some sort of s
 
 ## Mounting a Component
 
-Let's import `useEffect` in `components/Counter.js`...
+Let's import `useEffect` at the top of `components/Counter.js`...
 
 ```jsx
 import React, { useState, useEffect } from 'react'
@@ -166,7 +166,7 @@ const Counter = () => {
 export default Counter
 ```
 
-Open your browser console and refresh the page, you should see `Mounted` printed to the console. This is the equivalent of `componentDidMount`.
+Open your browser console and refresh the page, you should see `Mounted` printed to the console. This is the equivalent of `componentDidMount`.  Now click the button a few times and notice that the page doesn't re-render again. Our useEffect fired *on mount*...
 
 ![Relief](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2F3o7TKuylrX8kT7XhVS%2Fgiphy.gif&f=1&nofb=1)
 
@@ -174,7 +174,7 @@ Open your browser console and refresh the page, you should see `Mounted` printed
 
 With `useEffect`, the second argument it receives is an array of "observables" or "dependencies" to watch. React keeps track of any state, props, or functions that are provided and re-renders the virtual DOM if a there was a change to the state or props, and if a function was invoked.
 
-Let's add `count` to the array:
+Let's add `count` (from our useState) to the dependency array:
 
 ```jsx
 import React, { useState, useEffect } from 'react'
@@ -224,7 +224,7 @@ const Counter = () => {
 export default Counter
 ```
 
-Refresh your browsers and click the button **2** times. Now, every time the `count` state updates, a re-render occurs.
+Refresh your browsers and click the button **2** times. Now, every time the `count` state updates, a re-render occurs and our useEffect is fired. Notice how many times our 'mounted' console log goes off?
 
 This is exactly how `componentDidUpdate` works.
 
@@ -235,7 +235,7 @@ This is exactly how `componentDidUpdate` works.
 ## Cleanups
 
 Reset your counters back to `0` using the reset button.
-Click the button `10` times. You should see a new component being rendered on the page and a new message printed to the console.
+Click the button `20` times. You should see a new component being rendered on the page and a new message printed to the console.
 
 Now click the **Reset** button.
 
