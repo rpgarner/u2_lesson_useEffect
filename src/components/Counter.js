@@ -18,19 +18,19 @@ const Counter = () => {
       <div>
         <h3 style={{ fontSize: '4rem' }}>{count}</h3>
         <div>
-          <button style={{ fontSize: '4rem' }} onClick={incrementCount}>
-            DO MORE
+          <button style={{ fontSize: '3rem' }} onClick={incrementCount}>
+            +
           </button>
         </div>
         <div>
-          <button style={{ fontSize: '4rem' }} onClick={decrementCount}>
-            DO LESS
+          <button style={{ fontSize: '3rem' }} onClick={decrementCount}>
+            -
           </button>
         </div>
       </div>
       }
       <div>
-        <button style={{ fontSize: '4rem' }} onClick={() => updateCount(0)}>
+        <button style={{ fontSize: '3rem' }} onClick={() => updateCount(0)}>
           RESET
         </button>
       </div>
