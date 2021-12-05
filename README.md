@@ -256,3 +256,4 @@ In this lesson, we got to see how `useEffect` works in React.  We put it into ac
 - [More On React Component Lifecycle](https://medium.com/react-ecosystem/react-components-lifecycle-ce09239010df)
 - [useEffect](https://reactjs.org/docs/hooks-effect.html)
 - [Do the Opposite](https://youtu.be/1Y_6fZGSOQI)
+- [If You Use One Resource From This Lesson, Let It Be This One...](https://youtu.be/dQw4w9WgXcQ)
