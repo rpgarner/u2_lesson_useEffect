@@ -8,6 +8,7 @@ In this lesson we'll be covering the lifecycle of React components. React compon
 ## Getting Started
 - `fork` and `clone` to your machine
 - `cd` into the directory
+- `code .` to open in VSCode
 - `npm i` to install our dependencies
 - `npm start` to spin up our app
 
@@ -68,7 +69,7 @@ The "observable" is something we want to keep track of, typically some sort of s
 
 ## Mounting a Component
 
-Let's import `useEffect` at the top of `components/Counter.js`...
+Let's import `useEffect` at the top of `components/Counter.jsx`...
 
 ```jsx
 import React, { useState, useEffect } from 'react'
