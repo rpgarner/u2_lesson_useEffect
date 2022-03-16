@@ -72,7 +72,7 @@ The "observable" is something we want to keep track of, typically some sort of s
 Let's import `useEffect` at the top of `components/Counter.jsx`...
 
 ```jsx
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Surprise from './Surprise'
 
 const Counter = () => {
@@ -120,7 +120,7 @@ export default Counter
 Wait, come back! Next, let's set up our effect:
 
 ```jsx
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Surprise from './Surprise'
 
 const Counter = () => {
@@ -178,7 +178,7 @@ With `useEffect`, the second argument it receives is an array of "observables" o
 Let's add `count` (from our useState) to the dependency array:
 
 ```jsx
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Surprise from './Surprise'
 
 const Counter = () => {

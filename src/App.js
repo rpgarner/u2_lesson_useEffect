@@ -1,8 +1,8 @@
-import React from 'react'
 import './styles/App.css'
 import Counter from './components/Counter'
 
-function App() {
+const App = () => {
+  
   return (
     <div className="App">
       <Counter />
