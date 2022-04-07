@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Surprise from './Surprise'
 import '../styles/App.css'
 
 const Counter = () => {
   const [count, updateCount] = useState(0)
+
+  useEffect(() => {
+    console.log('Mounted')
+  }, [count])
 
   const incrementCount = () => {
     updateCount(count + 1)
